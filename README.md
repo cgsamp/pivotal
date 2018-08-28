@@ -23,8 +23,8 @@ Clone this repository
 Build it with Gradle
 Push to PCF
 
-`
+```
 git clone https://github.com/cgsamp/pivotal.git
 gradle clean build bootjar
 cf push
-`
+```
