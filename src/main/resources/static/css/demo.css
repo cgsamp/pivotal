@@ -1,0 +1,29 @@
+body {
+   background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../images/background.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+td {
+	vertical-align: top;
+}
+.dataCell {
+	font-weight: bold;
+	font-size: larger;
+}
+
+div.entityDiv {
+	height: 150px;
+}
+
+.column {
+    float: left;
+    width: 33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

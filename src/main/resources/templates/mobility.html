@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="css/demo.css" rel="stylesheet">
+<head>
+    <title>Mobility Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<script>
+function addNamedEntity(entity, 
+    name = null,
+    origin = null,
+    destination = null,
+    distance = 0
+    ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             location.reload(true);
+         }
+    };
+
+    var url = "http://localhost:8080/mobility/add/";
+
+    console.log(entity);
+    console.log(["passenger","transport"].indexOf(entity));
+
+    if (["passenger","transport"].indexOf(entity) > -1) {
+        url += entity + "?name=" + name;
+    } else {
+        url += entity + "?origin=" + origin + "&destination=" + destination + "&distance=" + distance;
+    }
+    console.log(url);
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+</script>
+
+    <h1>Mobility Ride Matching Demo</h1>
+    <div class="row">
+        <div class="column">
+            <div id="passengerDiv" class="entityDiv">
+                    Name: <input type="text" id="passengerName">
+                    <input type="button" value="Add Passenger" onclick="addNamedEntity('passenger',document.getElementById('passengerName').value)">
+                    <table>
+                    	<tr th:each="passenger: ${passengers}">
+                    	    <td th:text="${passenger.id}" class="dataCell"/>
+                	        <td th:text="${passenger.name}" class="dataCell"/>
+                	    </tr>
+                    </table>
+            </div>
+            <div id="transportDiv" class="entityDiv">
+                    Name: <input type="text" id="transportName">
+                    <input type="button" value="Add Transport" onclick="addNamedEntity('transport',document.getElementById('transportName').value)">
+                    <table>
+                        <tr th:each="transport: ${transports}">
+                            <td th:text="${transport.id}" class="dataCell"/>
+                            <td th:text="${transport.name}" class="dataCell"/>
+                        </tr>
+                    </table>
+            </div>
+            <div id="tripDiv" class="entityDiv">
+                <table>
+                    <tr><td>From:</td><td><input type="text" id="tripFrom"></td></tr>
+                    <tr><td>To:</td><td><input type="text" id="tripTo"></td></tr>
+                    <tr><td>Distance:</td><td><input type="text" id="tripDistance"></td></tr>
+                    <tr><td></td><td><input type="button" value="Add Trip" 
+                        onclick="addNamedEntity('trip',null,
+                            document.getElementById('tripFrom').value,
+                            document.getElementById('tripTo').value,
+                            document.getElementById('tripDistance').value
+                        )
+                    "></td></tr>
+                    <tr><td colspan=2>
+                    <table>
+                        <tr th:each="trip: ${trips}">
+                            <td th:text="${trip.id}" class="dataCell" />
+                            <td th:text="${trip.origin}" class="dataCell"/>
+                            <td th:text="${trip.destination}" class="dataCell"/>
+                            <td th:text="${trip.distance}" class="dataCell"/>
+                        </tr>
+                    </table>
+                </td></tr></table>
+            </div>
+        </div>
+        <div class="column">
+            <div id="rideDiv" class="entityDiv">
+                <table>
+                    <tr th:each="ride: ${rides}">
+                        <td th:text="${ride.id}" class="dataCell" />
+                        <td th:text="${ride.passenger}" class="dataCell" />
+                        <td th:text="${ride.transport}" class="dataCell"/>
+                        <td th:text="${ride.origin}" class="dataCell"/>
+                        <td th:text="${ride.destination}" class="dataCell"/>
+                        <td th:text="${ride.distance}" class="dataCell"/>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="column">
+            <h2>Purpose</h2>
+            Given a passenger, a means of transportation, and a trip, displays
+            every possible grouping. Todo: better matching!<br>
+            <h2>Technology</h2>
+            <ul>
+                <li>Cloud Foundry</li>
+                <li>Gradle</li>
+                <li>Spring Boot</li>
+                <li>JPA Queries</li>
+                <li>Rest Controller</li>
+                <li>MVC Controller</li>
+                <li>H2 Database</li>
+                <li>Javascript</li>
+                <li>CSS</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
