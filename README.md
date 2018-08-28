@@ -25,6 +25,6 @@ Push to PCF
 
 ```
 git clone https://github.com/cgsamp/pivotal.git
-gradle clean build bootjar
+gradle clean build bootJar
 cf push
 ```
