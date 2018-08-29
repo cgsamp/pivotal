@@ -1,15 +1,15 @@
 ### Mobility Demo
 
 Reference application using
--Cloud Foundry
--Pivotal Web Services
--Gradle
--Spring Boot
--JPA Entities and Queries
--REST and MVC Controller
--Javascript and Async
--HTML, CSS
--Git
+* Cloud Foundry
+* Pivotal Web Services
+* Gradle
+* Spring Boot
+* JPA Entities and Queries
+* REST and MVC Controller
+* Javascript and Async
+* HTML, CSS
+* Git
 
 ## Dependencies
 
