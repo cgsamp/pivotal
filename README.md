@@ -13,11 +13,11 @@ Reference application using
 
 ## Dependencies
 
-Java 8
-Gradle
-PCF Account
+* Java 8
+* Gradle
+* PCF Account
 
-## Building
+## Build and Deploy
 
 Clone this repository
 Build it with Gradle
